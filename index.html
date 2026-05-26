@@ -150,6 +150,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
 <body>
 
 <div class="hdr">
+  <div id="sync-pill" style="position:absolute;top:10px;right:16px;z-index:20;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid rgba(52,211,153,.3);background:rgba(52,211,153,.12);color:#34d399;font-family:Inter,sans-serif;letter-spacing:.04em;transition:all .35s ease;cursor:pointer" onclick="SyncManager.forceSave()" title="Click to force sync">&#9679; Loading…</div>
   <div class="hdr-in">
     <div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
@@ -1493,7 +1494,7 @@ const STATUS_STYLE={
 };
 
 function getStatus(i){ return localStorage.getItem('hr_status_'+i)||'Not Sent'; }
-function setStatus(i,s){ localStorage.setItem('hr_status_'+i,s); }
+function setStatus(i,s){ localStorage.setItem('hr_status_'+i,s); SyncManager.markDirty(); }
 
 function cycleStatus(i){
   const cur=getStatus(i);
@@ -1628,6 +1629,7 @@ function cycleStatus2(i){
   const btn=document.getElementById('sts2_'+i);
   if(btn){const ss=STATUS_STYLE[next];btn.style.cssText='cursor:pointer;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;border:none;'+ss;btn.textContent=next;}
   updateStats2();
+  SyncManager.markDirty();
 }
 function copyEmail2(i,btn){
   const hr=HRS2[i];
@@ -1748,7 +1750,15 @@ function sw(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
 }
-function tc(item){item.querySelector('.ach').classList.toggle('done')}
+function tc(item){
+  const ach=item.querySelector('.ach');
+  ach.classList.toggle('done');
+  const done=ach.classList.contains('done');
+  const idx=Array.from(document.querySelectorAll('.ai-item')).indexOf(item);
+  localStorage.setItem('ai_'+idx,done?'1':'0');
+  item.style.opacity=done?'0.55':'1';
+  SyncManager.markDirty();
+}
 function cp(id,btn){
   const txt=document.getElementById(id).innerText;
   navigator.clipboard.writeText(txt).then(()=>{
@@ -1758,6 +1768,146 @@ function cp(id,btn){
     btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);
   });
 }
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SYNC MANAGER — cross-device state sync via /api/sync-state (Supabase)
+// ═══════════════════════════════════════════════════════════════════════════
+const SyncManager = {
+  dirty: false,
+  timer: null,
+
+  // ── Status pill ────────────────────────────────────────────────────────
+  _states: {
+    loading:  {t:'● Loading…', bg:'rgba(34,211,238,.12)', bd:'rgba(34,211,238,.3)', c:'#22d3ee'},
+    syncing:  {t:'◌ Syncing…', bg:'rgba(34,211,238,.12)', bd:'rgba(34,211,238,.3)', c:'#22d3ee'},
+    synced:   {t:'● Synced',   bg:'rgba(52,211,153,.12)', bd:'rgba(52,211,153,.3)', c:'#34d399'},
+    pending:  {t:'● Pending',  bg:'rgba(251,191,36,.1)',  bd:'rgba(251,191,36,.25)',c:'#fbbf24'},
+    error:    {t:'⚠ Error',    bg:'rgba(251,113,133,.1)', bd:'rgba(251,113,133,.3)',c:'#fb7185'},
+    offline:  {t:'○ Offline',  bg:'rgba(100,116,139,.1)', bd:'rgba(100,116,139,.2)',c:'#64748b'}
+  },
+  _setPill(key){
+    const el=document.getElementById('sync-pill'); if(!el) return;
+    const s=this._states[key]||this._states.offline;
+    el.textContent=s.t; el.style.background=s.bg;
+    el.style.borderColor=s.bd; el.style.color=s.c;
+    if(key==='synced'){
+      const ts=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+      el.title='Last synced '+ts+' — click to force sync';
+    }
+  },
+
+  // ── State collection ───────────────────────────────────────────────────
+  getState(){
+    const hr1={},hr2={},actions={};
+    for(let k,i=0;i<localStorage.length;i++){
+      k=localStorage.key(i);
+      if(k?.startsWith('hr_status_')){
+        const v=localStorage.getItem(k);
+        if(v&&v!=='Not Sent') hr1[k.slice(10)]=v;
+      } else if(k?.startsWith('hr2_status_')){
+        const v=localStorage.getItem(k);
+        if(v&&v!=='Not Sent') hr2[k.slice(11)]=v;
+      } else if(k?.startsWith('ai_')){
+        const v=localStorage.getItem(k);
+        if(v==='1') actions[k.slice(3)]=1;
+      }
+    }
+    return {hr1,hr2,actions};
+  },
+
+  applyState(state){
+    const {hr1={},hr2={},actions={}}=state;
+    // HR1 statuses — update localStorage then re-render table
+    let hr1Changed=false;
+    Object.entries(hr1).forEach(([i,v])=>{
+      if(localStorage.getItem('hr_status_'+i)!==v){
+        localStorage.setItem('hr_status_'+i,v); hr1Changed=true;
+      }
+    });
+    if(hr1Changed && typeof renderHRTable==='function') renderHRTable();
+
+    // HR2 statuses — update localStorage then re-render table
+    let hr2Changed=false;
+    Object.entries(hr2).forEach(([i,v])=>{
+      if(localStorage.getItem('hr2_status_'+i)!==v){
+        localStorage.setItem('hr2_status_'+i,v); hr2Changed=true;
+      }
+    });
+    if(hr2Changed && typeof renderHRTable2==='function') renderHRTable2();
+
+    // Action items — update DOM directly
+    document.querySelectorAll('.ai-item').forEach((el,i)=>{
+      const ach=el.querySelector('.ach');
+      if(!ach) return;
+      const serverDone=!!actions[String(i)];
+      const localDone=localStorage.getItem('ai_'+i)==='1';
+      const done=serverDone||localDone; // union — don't un-check locally done items
+      if(done){
+        ach.classList.add('done'); el.style.opacity='0.55';
+        localStorage.setItem('ai_'+i,'1');
+      }
+    });
+  },
+
+  // ── Network ────────────────────────────────────────────────────────────
+  async loadFromServer(){
+    this._setPill('loading');
+    try{
+      const r=await fetch('/api/sync-state');
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const {data}=await r.json();
+      if(data && Object.keys(data).length>0) this.applyState(data);
+      this._setPill('synced');
+    }catch(e){
+      console.warn('[SyncManager] load failed:',e.message);
+      this._setPill(navigator.onLine?'error':'offline');
+    }
+  },
+
+  async saveToServer(force=false){
+    if(!this.dirty && !force) return;
+    this._setPill('syncing');
+    try{
+      const r=await fetch('/api/sync-state',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(this.getState()),
+        keepalive:force
+      });
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      this.dirty=false;
+      this._setPill('synced');
+    }catch(e){
+      console.warn('[SyncManager] save failed:',e.message);
+      this._setPill(navigator.onLine?'error':'offline');
+    }
+  },
+
+  markDirty(){
+    this.dirty=true; this._setPill('pending');
+    clearTimeout(this.timer);
+    this.timer=setTimeout(()=>this.saveToServer(),2500);
+  },
+
+  forceSave(){ this.dirty=true; this.saveToServer(true); },
+
+  init(){
+    // Restore action items from localStorage immediately (before server fetch)
+    document.querySelectorAll('.ai-item').forEach((el,i)=>{
+      if(localStorage.getItem('ai_'+i)==='1'){
+        el.querySelector('.ach')?.classList.add('done');
+        el.style.opacity='0.55';
+      }
+    });
+    // Fetch latest state from server
+    this.loadFromServer();
+    // Best-effort save on page unload
+    window.addEventListener('beforeunload',()=>{ if(this.dirty) this.forceSave(); });
+    // Re-sync when coming back online
+    window.addEventListener('online',()=>{ this.loadFromServer(); });
+  }
+};
 
 window.addEventListener('load',()=>{
   renderHRTable();
@@ -1794,6 +1944,9 @@ window.addEventListener('load',()=>{
       plugins:{legend:{labels:{color:'#94a3b8',font:{size:10},boxWidth:10}}}
     }
   });
+
+  // Initialise cross-device sync
+  SyncManager.init();
 });
 </script>
 </body>
