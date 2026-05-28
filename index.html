@@ -189,6 +189,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
     <button class="tb" onclick="sw('outreach',this)">📨 Outreach</button>
     <button class="tb" onclick="sw('action',this)">⚡ Action Plan</button>
     <button class="tb" onclick="sw('hr',this)">📬 HR Outreach</button>
+    <button class="tb" onclick="sw('agency',this)">🏢 Agency Outreach</button>
   </div>
 </div>
 
@@ -885,6 +886,150 @@ Himanshu Mishra | himanshumishra.site</div>
     <!-- GENERIC TEMPLATE -->
     <div class="ctitle-lg">✉️ Generic Cold Email Template (Campaign)</div>
     <div id="hr2-template"></div>
+  </div>
+</div>
+
+<!-- ===== AGENCY OUTREACH ===== -->
+<div id="tab-agency" class="panel">
+  <div class="shdr">
+    <h2>Agency Outreach — MNC Placement Network</h2>
+    <p>Connect with recruitment agencies to pitch your profile for senior roles at multinational companies. Each template is tailored to agency business models and MNC hiring patterns.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="srow" id="agency-stats">
+    <div class="smin"><div class="n" id="as-total" style="color:var(--cyan)">0</div><div class="l">Agencies Contacted</div></div>
+    <div class="smin"><div class="n" id="as-replied" style="color:var(--am)">0</div><div class="l">Positive Responses</div></div>
+    <div class="smin"><div class="n" id="as-interviews" style="color:var(--em)">0</div><div class="l">Interviews Scheduled</div></div>
+    <div class="smin"><div class="n" id="as-offers" style="color:var(--pink)">0</div><div class="l">Offers Received</div></div>
+  </div>
+
+  <!-- EMAIL TEMPLATE -->
+  <div class="ctitle-lg">✉️ Agency Outreach Template</div>
+  <div style="display:grid;gap:16px;margin-top:16px">
+    <!-- Template Card -->
+    <div class="card" style="border-left:4px solid #06b6d4;padding:20px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--cyan);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">📧 Standard Agency Pitch</div>
+          <div style="font-size:12px;color:var(--text2)">Professional tone targeting agency placement managers and recruitment directors</div>
+        </div>
+        <button onclick="copyToClipboard(document.getElementById('agency-template-text').textContent,'Agency template copied to clipboard!')" style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:#06b6d4;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;white-space:nowrap" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.1)'">📋 Copy Email</button>
+      </div>
+
+      <div style="background:rgba(15,23,42,.5);border:1px solid rgba(148,163,184,.15);border-radius:8px;padding:16px;font-size:12px;line-height:1.6;font-family:Menlo,monospace;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-x:auto" id="agency-template-text">Subject: Senior Software Developer (3.5+ YoE) — MNC Placement Opportunity
+
+Hi [Placement Manager Name],
+
+I'm reaching out because I believe your network would be an excellent fit for placing my profile with multinational tech companies.
+
+I'm Himanshu Mishra, a Senior Software Engineer with 3.5+ years of production experience in backend systems, cloud infrastructure, and AI/ML engineering:
+
+• Production AI: Shipped 2 LLM agents to production (Policy Compliance, API Readiness Evaluator) using Claude, OpenAI, and Gemini/Vertex AI
+• Backend Engineering: 3.5 years with Java/Spring Boot, microservices, Kubernetes, CI/CD pipelines, database design (PostgreSQL, Redis, Kafka)
+• Full-Stack: React frontend, Python backends with FastAPI, Docker containerization, 100% automated deployments
+• Open Source: RAG pipeline (AskMyDoc) with LangChain, ChromaDB, RAGAS evaluation — interview-ready project
+
+Current Focus: I'm actively exploring SDE II / SDE III roles at MNCs (Google, Microsoft, Meta, Amazon, etc.) with a preference for AI infrastructure, backend systems, or product engineering roles. I'm keen on rapid growth and working on high-impact problems with scale.
+
+Why your network: You specialize in placing talent at tier-1 MNCs. I'm a strong fit for your clients — senior-level skill set, production AI experience (increasingly rare), and genuinely interested in growth-oriented roles rather than lateral moves.
+
+Available for: Immediate discussions, technical interviews, role customization based on MNC requirements.
+
+Attached: Resume (PDF + DOCX), portfolio link, GitHub, and LinkedIn profile for full background.
+
+I'd appreciate if you could explore relevant openings and let me know the next steps. Happy to discuss your process and any specific client needs.
+
+Best regards,
+Himanshu Mishra
+Software Engineer (AI Systems & Backend)
++91 7260954097 | mishra00.11himanshu@gmail.com
+
+Portfolio: himanshumishra.site
+GitHub: github.com/Himanshu-prog-hub
+LinkedIn: linkedin.com/in/himanshu-mishra-0b2795191
+Resume: [Attached — Himanshu_Mishra_Resume_v3.pdf & .docx]</div>
+
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(148,163,184,.1);font-size:11px;color:var(--text2)">
+        <strong style="color:var(--text)">💡 Customization Tips:</strong> Replace [Placement Manager Name] with actual name. Mention 1–2 specific clients if you know them ("I saw you work with Google/Microsoft"). Add "I'm open to relocation to [City]" if applicable.
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENCIES TO CONTACT -->
+  <div style="margin:36px 0 18px;padding-top:28px;border-top:1px solid rgba(148,163,184,.1)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+      <span style="font-size:18px;font-weight:700;color:#f1f5f9">🏢 Top Agencies to Approach</span>
+      <span style="background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);border-radius:6px;padding:2px 10px;font-size:11px;font-weight:600;color:#8b5cf6">Curated List</span>
+    </div>
+    <p style="color:#64748b;font-size:12px;margin-bottom:18px">Specialize in placing engineers at MNCs. Personalize emails with specific company placements when researched.</p>
+
+    <div class="card" style="overflow-x:auto">
+      <table class="tbl" style="font-size:12px">
+        <thead>
+          <tr>
+            <th>Agency Name</th>
+            <th>Focus</th>
+            <th>Contact Pattern</th>
+            <th>Typical MNC Clients</th>
+          </tr>
+        </thead>
+        <tbody style="color:var(--text)">
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>Hudson Global / Hudson RPO</strong></td>
+            <td>Executive placement, IT talent</td>
+            <td>Direct email to placement manager or careers@</td>
+            <td>Google, Microsoft, Meta, Amazon, etc.</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>Kforce</strong></td>
+            <td>IT staff augmentation, permanent placement</td>
+            <td>Find hiring manager name + email from LinkedIn</td>
+            <td>Tier-1 Tech Companies, Fortune 500s</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>Mastech Digital</strong></td>
+            <td>Digital transformation, software engineering</td>
+            <td>careers@mastech.com or LinkedIn recruiter</td>
+            <td>Google, Microsoft, AWS partners</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>On Assignment / Apex Group</strong></td>
+            <td>Contract-to-hire, permanent placement</td>
+            <td>Specialist email from company website</td>
+            <td>Tech + Finance MNCs</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>iMerge Global / Staffing 360</strong></td>
+            <td>Global IT recruitment</td>
+            <td>LinkedIn direct message to recruiters</td>
+            <td>FAANG, Google Cloud partners</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>Local India-focused: Kaashi Leaders</strong></td>
+            <td>Premium placement (India-focused MNC roles)</td>
+            <td>CEO: Rajesh Masrani or recruitment@kaashileaders.com</td>
+            <td>Google, Microsoft, Facebook, Amazon</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
+            <td style="padding:10px"><strong>Transearch / Heidrick & Struggles</strong></td>
+            <td>Executive search, C-suite placements</td>
+            <td>Referral or LinkedIn approach</td>
+            <td>Top-tier tech leadership roles</td>
+          </tr>
+          <tr>
+            <td style="padding:10px"><strong>NASSCOM Staffing / BG Staffing</strong></td>
+            <td>Premium engineering placements (India)</td>
+            <td>careers@ or LinkedIn message</td>
+            <td>MNCs hiring senior engineers in India</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:14px;padding:12px;background:rgba(34,211,238,.08);border-left:3px solid rgba(34,211,238,.5);border-radius:6px;font-size:12px;color:var(--text)">
+      <strong>📌 Strategy:</strong> Agencies are volume players. They care about placement success. Lead with your MNC suitability, recent production AI wins, and clear salary expectations. Follow up after 5-7 days with a brief "checking in" message.
+    </div>
   </div>
 </div>
 
@@ -1766,6 +1911,15 @@ function cp(id,btn){
   }).catch(()=>{
     const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
     btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);
+  });
+}
+
+function copyToClipboard(txt,msg){
+  navigator.clipboard.writeText(txt).then(()=>{
+    if(msg) alert(msg);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    if(msg) alert(msg);
   });
 }
 
