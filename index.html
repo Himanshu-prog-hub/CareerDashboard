@@ -892,145 +892,40 @@ Himanshu Mishra | himanshumishra.site</div>
 <!-- ===== AGENCY OUTREACH ===== -->
 <div id="tab-agency" class="panel">
   <div class="shdr">
-    <h2>Agency Outreach — MNC Placement Network</h2>
-    <p>Connect with recruitment agencies to pitch your profile for senior roles at multinational companies. Each template is tailored to agency business models and MNC hiring patterns.</p>
+    <h2>Agency Outreach Tracker — 8 Agencies · MNC Placement Network</h2>
+    <p>Click status to cycle: Not Sent → Sent → Replied → Interview → Rejected. Progress saved in browser. Copy email button copies template, Send ↗ opens pre-filled draft.</p>
   </div>
 
   <!-- STATS -->
   <div class="srow" id="agency-stats">
-    <div class="smin"><div class="n" id="as-total" style="color:var(--cyan)">0</div><div class="l">Agencies Contacted</div></div>
-    <div class="smin"><div class="n" id="as-replied" style="color:var(--am)">0</div><div class="l">Positive Responses</div></div>
-    <div class="smin"><div class="n" id="as-interviews" style="color:var(--em)">0</div><div class="l">Interviews Scheduled</div></div>
-    <div class="smin"><div class="n" id="as-offers" style="color:var(--pink)">0</div><div class="l">Offers Received</div></div>
+    <div class="smin"><div class="n" id="ag-total" style="color:var(--cyan)">8</div><div class="l">Total Agencies</div></div>
+    <div class="smin"><div class="n" id="ag-sent" style="color:var(--violet)">0</div><div class="l">Emails Sent</div></div>
+    <div class="smin"><div class="n" id="ag-replied" style="color:var(--am)">0</div><div class="l">Replied</div></div>
+    <div class="smin"><div class="n" id="ag-interview" style="color:var(--em)">0</div><div class="l">Interviews</div></div>
+    <div class="smin"><div class="n" id="ag-rate" style="color:var(--pink)">0%</div><div class="l">Response Rate</div></div>
+  </div>
+
+  <!-- AGENCIES TABLE -->
+  <div class="card" style="margin-bottom:18px;overflow-x:auto">
+    <div class="ctitle">🏢 All Agencies</div>
+    <table class="tbl" id="agency-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Agency Name</th>
+          <th>Website</th>
+          <th>Focus Area</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="agency-tbody"></tbody>
+    </table>
   </div>
 
   <!-- EMAIL TEMPLATE -->
   <div class="ctitle-lg">✉️ Agency Outreach Template</div>
-  <div style="display:grid;gap:16px;margin-top:16px">
-    <!-- Template Card -->
-    <div class="card" style="border-left:4px solid #06b6d4;padding:20px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:var(--cyan);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">📧 Standard Agency Pitch</div>
-          <div style="font-size:12px;color:var(--text2)">Professional tone targeting agency placement managers and recruitment directors</div>
-        </div>
-        <button onclick="copyToClipboard(document.getElementById('agency-template-text').textContent,'Agency template copied to clipboard!')" style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:#06b6d4;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;white-space:nowrap" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.1)'">📋 Copy Email</button>
-      </div>
-
-      <div style="background:rgba(15,23,42,.5);border:1px solid rgba(148,163,184,.15);border-radius:8px;padding:16px;font-size:12px;line-height:1.6;font-family:Menlo,monospace;color:var(--text);white-space:pre-wrap;word-wrap:break-word;overflow-x:auto" id="agency-template-text">Subject: Senior Software Developer (3.5+ YoE) — MNC Placement Opportunity
-
-Hi [Placement Manager Name],
-
-I'm reaching out because I believe your network would be an excellent fit for placing my profile with multinational tech companies.
-
-I'm Himanshu Mishra, a Senior Software Engineer with 3.5+ years of production experience in backend systems, cloud infrastructure, and AI/ML engineering:
-
-• Production AI: Shipped 2 LLM agents to production (Policy Compliance, API Readiness Evaluator) using Claude, OpenAI, and Gemini/Vertex AI
-• Backend Engineering: 3.5 years with Java/Spring Boot, microservices, Kubernetes, CI/CD pipelines, database design (PostgreSQL, Redis, Kafka)
-• Full-Stack: React frontend, Python backends with FastAPI, Docker containerization, 100% automated deployments
-• Open Source: RAG pipeline (AskMyDoc) with LangChain, ChromaDB, RAGAS evaluation — interview-ready project
-
-Current Focus: I'm actively exploring SDE II / SDE III roles at MNCs (Google, Microsoft, Meta, Amazon, etc.) with a preference for AI infrastructure, backend systems, or product engineering roles. I'm keen on rapid growth and working on high-impact problems with scale.
-
-Why your network: You specialize in placing talent at tier-1 MNCs. I'm a strong fit for your clients — senior-level skill set, production AI experience (increasingly rare), and genuinely interested in growth-oriented roles rather than lateral moves.
-
-Available for: Immediate discussions, technical interviews, role customization based on MNC requirements.
-
-Attached: Resume (PDF + DOCX), portfolio link, GitHub, and LinkedIn profile for full background.
-
-I'd appreciate if you could explore relevant openings and let me know the next steps. Happy to discuss your process and any specific client needs.
-
-Best regards,
-Himanshu Mishra
-Software Engineer (AI Systems & Backend)
-+91 7260954097 | mishra00.11himanshu@gmail.com
-
-Portfolio: himanshumishra.site
-GitHub: github.com/Himanshu-prog-hub
-LinkedIn: linkedin.com/in/himanshu-mishra-0b2795191
-Resume: [Attached — Himanshu_Mishra_Resume_v3.pdf & .docx]</div>
-
-      <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(148,163,184,.1);font-size:11px;color:var(--text2)">
-        <strong style="color:var(--text)">💡 Customization Tips:</strong> Replace [Placement Manager Name] with actual name. Mention 1–2 specific clients if you know them ("I saw you work with Google/Microsoft"). Add "I'm open to relocation to [City]" if applicable.
-      </div>
-    </div>
-  </div>
-
-  <!-- AGENCIES TO CONTACT -->
-  <div style="margin:36px 0 18px;padding-top:28px;border-top:1px solid rgba(148,163,184,.1)">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
-      <span style="font-size:18px;font-weight:700;color:#f1f5f9">🏢 Top Agencies to Approach</span>
-      <span style="background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);border-radius:6px;padding:2px 10px;font-size:11px;font-weight:600;color:#8b5cf6">Curated List</span>
-    </div>
-    <p style="color:#64748b;font-size:12px;margin-bottom:18px">Specialize in placing engineers at MNCs. Personalize emails with specific company placements when researched.</p>
-
-    <div class="card" style="overflow-x:auto">
-      <table class="tbl" style="font-size:12px">
-        <thead>
-          <tr>
-            <th>Agency Name</th>
-            <th>Focus</th>
-            <th>Contact Pattern</th>
-            <th>Typical MNC Clients</th>
-          </tr>
-        </thead>
-        <tbody style="color:var(--text)">
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>Hudson Global / Hudson RPO</strong></td>
-            <td>Executive placement, IT talent</td>
-            <td>Direct email to placement manager or careers@</td>
-            <td>Google, Microsoft, Meta, Amazon, etc.</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>Kforce</strong></td>
-            <td>IT staff augmentation, permanent placement</td>
-            <td>Find hiring manager name + email from LinkedIn</td>
-            <td>Tier-1 Tech Companies, Fortune 500s</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>Mastech Digital</strong></td>
-            <td>Digital transformation, software engineering</td>
-            <td>careers@mastech.com or LinkedIn recruiter</td>
-            <td>Google, Microsoft, AWS partners</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>On Assignment / Apex Group</strong></td>
-            <td>Contract-to-hire, permanent placement</td>
-            <td>Specialist email from company website</td>
-            <td>Tech + Finance MNCs</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>iMerge Global / Staffing 360</strong></td>
-            <td>Global IT recruitment</td>
-            <td>LinkedIn direct message to recruiters</td>
-            <td>FAANG, Google Cloud partners</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>Local India-focused: Kaashi Leaders</strong></td>
-            <td>Premium placement (India-focused MNC roles)</td>
-            <td>CEO: Rajesh Masrani or recruitment@kaashileaders.com</td>
-            <td>Google, Microsoft, Facebook, Amazon</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(148,163,184,.1)">
-            <td style="padding:10px"><strong>Transearch / Heidrick & Struggles</strong></td>
-            <td>Executive search, C-suite placements</td>
-            <td>Referral or LinkedIn approach</td>
-            <td>Top-tier tech leadership roles</td>
-          </tr>
-          <tr>
-            <td style="padding:10px"><strong>NASSCOM Staffing / BG Staffing</strong></td>
-            <td>Premium engineering placements (India)</td>
-            <td>careers@ or LinkedIn message</td>
-            <td>MNCs hiring senior engineers in India</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div style="margin-top:14px;padding:12px;background:rgba(34,211,238,.08);border-left:3px solid rgba(34,211,238,.5);border-radius:6px;font-size:12px;color:var(--text)">
-      <strong>📌 Strategy:</strong> Agencies are volume players. They care about placement success. Lead with your MNC suitability, recent production AI wins, and clear salary expectations. Follow up after 5-7 days with a brief "checking in" message.
-    </div>
-  </div>
+  <div id="agency-template"></div>
 </div>
 
 </div>
@@ -1397,6 +1292,53 @@ const HRS2=[
   {name:'Drishti Mistry', email:'drishti@artoonsolutions.com', title:'Head Of Recruitment', co:'Artoonsolutions'},
   {name:'Durga Akula', email:'durga.akula@cotelligent.com', title:'Associate Director - HR', co:'Cotelligent'},
 ];
+
+// ── AGENCIES DATA (RECRUITMENT AGENCIES) ────────────────────────────────────────
+const AGENCIES=[
+  {name:'Weekday', website:'weekday.works', email:'contact@weekday.works', focus:'Pan-India Tech Placement'},
+  {name:'Taggd (PeopleStrong)', website:'taggd.com', email:'careers@taggd.com', focus:'Tech-Focused Recruitment'},
+  {name:'Alliance International', website:'allianceinternational.co.in', email:'careers@allianceinternational.co.in', focus:'Global Tech Staffing'},
+  {name:'Randstad India', website:'randstad.in', email:'recruitment@randstad.in', focus:'IT Staffing & Placement'},
+  {name:'TeamLease Digital', website:'teamleasedigital.com', email:'careers@teamleasedigital.com', focus:'Digital Transformation'},
+  {name:'ABC Consultants', website:'abcconsultants.in', email:'contact@abcconsultants.in', focus:'Tech Recruitment'},
+  {name:'Checkmate Global Technologies', website:'checkmateq.com', email:'careers@checkmateq.com', focus:'Developer Hiring'},
+  {name:'AccioJob', website:'acciojob.com', email:'partnerships@acciojob.com', focus:'Coding → Tech Jobs'},
+];
+
+// ── AGENCY TEMPLATE ────────────────────────────────────────────────────────────
+const AGENCY_TPL={
+  subject:'Senior Software Engineer (3.5+ YoE) — Production AI & Backend Expertise',
+  body:(agencyName)=>`Hi ${agencyName} Team,
+
+I'm reaching out because I believe your network would be an excellent fit for placing my profile with multinational tech companies.
+
+I'm Himanshu Mishra, a Senior Software Engineer with 3.5+ years of production experience in backend systems, cloud infrastructure, and AI/ML engineering:
+
+• Production AI: Shipped 2 LLM agents to production (Policy Compliance, API Readiness Evaluator) using Claude, OpenAI, and Gemini/Vertex AI
+• Backend Engineering: Java/Spring Boot, microservices, Kubernetes, CI/CD pipelines, PostgreSQL, Redis, Kafka
+• Full-Stack: React frontend, Python/FastAPI backends, Docker containerization, 100% automated deployments
+• Open Source: RAG pipeline (AskMyDoc) with LangChain, ChromaDB, RAGAS evaluation
+
+Current Focus: Actively exploring SDE II / SDE III roles at MNCs (Google, Microsoft, Meta, Amazon, etc.) with a preference for AI infrastructure, backend systems, or product engineering roles. Keen on rapid growth and working on high-impact problems at scale.
+
+Why your network: I'm a strong fit for your tier-1 MNC clients — senior-level skill set, production AI experience (increasingly rare), and genuinely interested in growth-oriented roles rather than lateral moves.
+
+Available for: Immediate discussions, technical interviews, and role customization based on your client needs.
+
+Attached: Resume (PDF + DOCX), portfolio, GitHub, and LinkedIn profile for full background.
+
+Happy to discuss your placement process and specific client requirements.
+
+Best regards,
+Himanshu Mishra
+Software Engineer (AI Systems & Backend)
++91 7260954097 | mishra00.11himanshu@gmail.com
+
+Portfolio: himanshumishra.site
+GitHub: github.com/Himanshu-prog-hub
+LinkedIn: linkedin.com/in/himanshu-mishra-0b2795191
+Resume: Himanshu_Mishra_Resume_v3.pdf & .docx`
+};
 
 // ── GENERIC CAMPAIGN TEMPLATE ─────────────────────────────────────────────────
 const TPL_GENERIC={
@@ -1889,6 +1831,113 @@ function copyGenericTpl(){
   });
 }
 
+// ── AGENCY STATUS FUNCTIONS ───────────────────────────────────────────────────
+function getAgencyStatus(i){return localStorage.getItem('agency_status_'+i)||'Not Sent';}
+function setAgencyStatus(i,s){localStorage.setItem('agency_status_'+i,s);SyncManager.markDirty();}
+
+function cycleAgencyStatus(i){
+  const cur=getAgencyStatus(i);
+  const next=STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%STATUS_CYCLE.length];
+  setAgencyStatus(i,next);
+  const btn=document.getElementById('ag-sts_'+i);
+  btn.textContent=next;
+  btn.setAttribute('style','cursor:pointer;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;'+STATUS_STYLE[next]);
+  updateAgencyStats();
+}
+
+function updateAgencyStats(){
+  const all=AGENCIES.map((_,i)=>getAgencyStatus(i));
+  document.getElementById('ag-sent').textContent     = all.filter(s=>s!=='Not Sent').length;
+  document.getElementById('ag-replied').textContent  = all.filter(s=>s==='Replied'||s==='Interview').length;
+  document.getElementById('ag-interview').textContent= all.filter(s=>s==='Interview').length;
+  const sent=all.filter(s=>s!=='Not Sent').length;
+  const replied=all.filter(s=>s==='Replied'||s==='Interview').length;
+  document.getElementById('ag-rate').textContent = sent>0?Math.round(replied/sent*100)+'%':'0%';
+}
+
+function copyAgencyEmail(i){
+  const ag=AGENCIES[i];
+  const body=AGENCY_TPL.body(ag.name);
+  navigator.clipboard.writeText(body).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=body;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+  });
+  const btn=document.getElementById('agcp_'+i);
+  btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);
+}
+
+function openAgencyMailto(i){
+  const ag=AGENCIES[i];
+  const body=AGENCY_TPL.body(ag.name);
+  const subj=encodeURIComponent(AGENCY_TPL.subject);
+  const bodyEnc=encodeURIComponent(body);
+  window.open('mailto:'+ag.email+'?subject='+subj+'&body='+bodyEnc);
+}
+
+function renderAgencyTable(){
+  const tbody=document.getElementById('agency-tbody');
+  if(!tbody) return;
+  let rows='';
+  AGENCIES.forEach((ag,i)=>{
+    const status=getAgencyStatus(i);
+    const ss=STATUS_STYLE[status];
+    rows+=`<tr>
+      <td style="color:#64748b;font-size:12px">${i+1}</td>
+      <td><strong style="font-size:12px">${ag.name}</strong></td>
+      <td><a href="https://${ag.website}" target="_blank" style="color:#22d3ee;font-size:11px;text-decoration:none">${ag.website}</a></td>
+      <td style="font-size:11px;color:#64748b">${ag.focus}</td>
+      <td><button id="ag-sts_${i}" onclick="cycleAgencyStatus(${i})" style="cursor:pointer;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;border:none;${ss}">${status}</button></td>
+      <td style="padding:6px 10px">
+        <button id="agcp_${i}" onclick="copyAgencyEmail(${i})" style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:4px 10px;color:#94a3b8;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;margin-right:4px">Copy</button>
+        <button onclick="openAgencyMailto(${i})" style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:4px 10px;color:#34d399;font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Send ↗</button>
+      </td>
+    </tr>`;
+  });
+  tbody.innerHTML=rows;
+  updateAgencyStats();
+}
+
+function renderAgencyTemplate(){
+  const wrap=document.getElementById('agency-template');
+  if(!wrap) return;
+  const card=document.createElement('div');
+  card.className='tcard';
+  card.style.marginBottom='12px';
+
+  const head=document.createElement('div');
+  head.className='thead';
+  head.innerHTML=`
+    <div>
+      <div class="ttitle" style="display:flex;align-items:center;gap:8px">
+        <span style="width:10px;height:10px;border-radius:50%;background:#06b6d4;display:inline-block;flex-shrink:0"></span>
+        Agency Outreach Template
+      </div>
+      <div style="margin-top:5px;font-size:10px;color:#64748b">Personalize agency name when sending — Subject and body auto-filled per recipient</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+      <div style="font-size:10px;color:#94a3b8;max-width:420px;text-align:right">
+        Subject: <em style="color:#fbbf24;font-style:normal">${AGENCY_TPL.subject}</em>
+      </div>
+      <button onclick="copyAgencyTemplateGeneric()"
+        style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:5px 12px;color:#94a3b8;font-size:11px;cursor:pointer;font-family:Inter,sans-serif">
+        Copy Template
+      </button>
+    </div>`;
+  card.appendChild(head);
+
+  const body=document.createElement('div');
+  body.style.cssText='padding:14px 16px;font-size:12px;line-height:1.9;color:#94a3b8;white-space:pre-line;border-top:1px solid rgba(148,163,184,.08)';
+  body.textContent=AGENCY_TPL.body('[Agency Name]');
+  card.appendChild(body);
+  wrap.appendChild(card);
+}
+
+function copyAgencyTemplateGeneric(){
+  const body=AGENCY_TPL.body('[Agency Name]');
+  navigator.clipboard.writeText(body).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=body;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+  });
+}
+
 function sw(name,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
@@ -1953,7 +2002,7 @@ const SyncManager = {
 
   // ── State collection ───────────────────────────────────────────────────
   getState(){
-    const hr1={},hr2={},actions={};
+    const hr1={},hr2={},agency={},actions={};
     for(let k,i=0;i<localStorage.length;i++){
       k=localStorage.key(i);
       if(k?.startsWith('hr_status_')){
@@ -1962,16 +2011,19 @@ const SyncManager = {
       } else if(k?.startsWith('hr2_status_')){
         const v=localStorage.getItem(k);
         if(v&&v!=='Not Sent') hr2[k.slice(11)]=v;
+      } else if(k?.startsWith('agency_status_')){
+        const v=localStorage.getItem(k);
+        if(v&&v!=='Not Sent') agency[k.slice(14)]=v;
       } else if(k?.startsWith('ai_')){
         const v=localStorage.getItem(k);
         if(v==='1') actions[k.slice(3)]=1;
       }
     }
-    return {hr1,hr2,actions};
+    return {hr1,hr2,agency,actions};
   },
 
   applyState(state){
-    const {hr1={},hr2={},actions={}}=state;
+    const {hr1={},hr2={},agency={},actions={}}=state;
     // HR1 statuses — update localStorage then re-render table
     let hr1Changed=false;
     Object.entries(hr1).forEach(([i,v])=>{
@@ -1989,6 +2041,15 @@ const SyncManager = {
       }
     });
     if(hr2Changed && typeof renderHRTable2==='function') renderHRTable2();
+
+    // Agency statuses — update localStorage then re-render table
+    let agencyChanged=false;
+    Object.entries(agency).forEach(([i,v])=>{
+      if(localStorage.getItem('agency_status_'+i)!==v){
+        localStorage.setItem('agency_status_'+i,v); agencyChanged=true;
+      }
+    });
+    if(agencyChanged && typeof renderAgencyTable==='function') renderAgencyTable();
 
     // Action items — update DOM directly
     document.querySelectorAll('.ai-item').forEach((el,i)=>{
@@ -2068,6 +2129,8 @@ window.addEventListener('load',()=>{
   renderTemplates();
   renderHRTable2();
   renderGenericTemplate();
+  renderAgencyTable();
+  renderAgencyTemplate();
   new Chart(document.getElementById('atsChart'),{
     type:'doughnut',
     data:{datasets:[{data:[89,11],backgroundColor:['#34d399','#1a2235'],borderWidth:0}]},
