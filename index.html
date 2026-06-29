@@ -2418,9 +2418,14 @@ function copyHRBatch2Template(){
 
 function renderHRBatch2Table(){
   const tbody=document.getElementById('hrb2-tbody');
-  if(!tbody) return;
-  filterHRBatch2();
-  updateHRBatch2Stats();
+  if(!tbody) {console.warn('[HR Batch 2] tbody not found'); return;}
+  try {
+    filterHRBatch2();
+    updateHRBatch2Stats();
+    console.log('[HR Batch 2] Rendered '+HR_BATCH2.length+' contacts');
+  } catch(e) {
+    console.error('[HR Batch 2] Error rendering:', e.message);
+  }
 }
 
 function renderHRBatch2Template(){
