@@ -190,6 +190,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-
     <button class="tb" onclick="sw('action',this)">⚡ Action Plan</button>
     <button class="tb" onclick="sw('hr',this)">📬 HR Outreach</button>
     <button class="tb" onclick="sw('hr-prospects',this)">💼 HR Prospects</button>
+    <button class="tb" onclick="sw('hr-batch2',this)">👥 HR Batch 2</button>
     <button class="tb" onclick="sw('agency',this)">🏢 Agency Outreach</button>
   </div>
 </div>
@@ -950,6 +951,56 @@ Himanshu Mishra | himanshumishra.site</div>
   </div>
 </div>
 
+<!-- ===== HR BATCH 2 ===== -->
+<div id="tab-hr-batch2" class="panel">
+  <div class="shdr">
+    <h2>HR Batch 2 — 28 Verified Contacts</h2>
+    <p>Curated list of HR contacts from verified sources. Click status to cycle: Not Sent → Sent → Replied → Interview → Rejected. Progress synced across devices.</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="srow" id="hrb2-stats">
+    <div class="smin"><div class="n" id="hrb2-total" style="color:var(--cyan)">28</div><div class="l">Contacts</div></div>
+    <div class="smin"><div class="n" id="hrb2-sent" style="color:var(--violet)">0</div><div class="l">Sent</div></div>
+    <div class="smin"><div class="n" id="hrb2-replied" style="color:var(--am)">0</div><div class="l">Replied</div></div>
+    <div class="smin"><div class="n" id="hrb2-interview" style="color:var(--em)">0</div><div class="l">Interviews</div></div>
+    <div class="smin"><div class="n" id="hrb2-rate" style="color:var(--pink)">0%</div><div class="l">Response Rate</div></div>
+  </div>
+
+  <!-- SEARCH -->
+  <div style="margin-bottom:18px">
+    <input id="hrb2-search" oninput="filterHRBatch2()" placeholder="Search name, email, company..." style="width:100%;max-width:480px;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text);font-size:12px;font-family:Inter,sans-serif;outline:none">
+  </div>
+
+  <!-- TABLE -->
+  <div class="card" style="margin-bottom:18px;overflow-x:auto">
+    <div class="ctitle">📋 HR Batch 2 Contacts</div>
+    <table class="tbl" id="hrb2-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Company</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="hrb2-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- EMAIL TEMPLATE -->
+  <div class="ctitle-lg">✉️ Cold Email Template</div>
+  <div id="hrb2-template-display" class="card" style="margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-weight:600;color:var(--text)">Email Template</div>
+      <button onclick="copyHRBatch2Template()" style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:6px 12px;color:#34d399;font-size:11px;cursor:pointer;font-family:Inter,sans-serif">Copy Template</button>
+    </div>
+    <div id="hrb2-template-preview" style="background:var(--surf3);border:1px solid var(--border);border-radius:6px;padding:14px;font-size:12px;line-height:1.6;color:var(--text2);white-space:pre-wrap;word-wrap:break-word;max-height:300px;overflow-y:auto"></div>
+  </div>
+</div>
+
 <!-- ===== AGENCY OUTREACH ===== -->
 <div id="tab-agency" class="panel">
   <div class="shdr">
@@ -1560,6 +1611,38 @@ const HR_PROSPECTS=[
 
 // Note: HR_PROSPECTS contains 100+ active hiring contacts in Bangalore, organized by company tier
 // Use filterHRProspects() to search by name/email/company or filter by category
+
+// ── HR BATCH 2 DATA (28 VERIFIED CONTACTS) ────────────────────────────────────
+const HR_BATCH2=[
+  {name:'Puli Gr', company:'Texas Instruments', email:'p-raj@ti.com', phone:''},
+  {name:'Debasree Chaudhury', company:'Amazon', email:'debasree.chaudhury@amazon.com', phone:''},
+  {name:'Dhanalakshmi C', company:'Wells Fargo', email:'dhanalakshmi.c@wellsfargo.com', phone:''},
+  {name:'Abir Biswas', company:'Wells Fargo', email:'abir.s.biswas@wellsfargo.com', phone:''},
+  {name:'Yash Mohan', company:'Wells Fargo', email:'yash.mohan@wellsfargo.com', phone:''},
+  {name:'Kameshwari Ayaluri', company:'Microsoft', email:'kayaluri@microsoft.com', phone:''},
+  {name:'Vishnu Prakash', company:'Microsoft', email:'vprakash@microsoft.com', phone:''},
+  {name:'Rajalakshmi Samathanavel', company:'Microsoft', email:'rajalakshmis@microsoft.com', phone:''},
+  {name:'Aparna Sen', company:'Microsoft', email:'aparnasen@microsoft.com', phone:''},
+  {name:'Shivangi Arora', company:'Google', email:'shivangiarora@google.com', phone:''},
+  {name:'Sidh Agarwal', company:'Google', email:'agarwals@google.com', phone:''},
+  {name:'Harsh Kapoor', company:'Google', email:'harshkapoor@google.com', phone:''},
+  {name:'Nancy Paul', company:'Google', email:'nancypaul@google.com', phone:''},
+  {name:'Onyx Lakra', company:'Razorpay', email:'onyx.lakra@razorpay.com', phone:''},
+  {name:'Ravi Kumar', company:'Razorpay', email:'ravi.kumar@razorpay.com', phone:''},
+  {name:'Ashwin Narayan', company:'Razorpay', email:'ashwin.narayan@razorpay.com', phone:''},
+  {name:'Anupama Ram', company:'American Express', email:'anupama.ram@aexp.com', phone:''},
+  {name:'Asha M', company:'American Express', email:'asha.r.dm@aexp.com', phone:''},
+  {name:'Joshua Philip', company:'American Express', email:'joshua.i.philip@aexp.com', phone:''},
+  {name:'Subrat Das', company:'American Express', email:'subrat.das@aexp.com', phone:''},
+  {name:'Vinayaka Db', company:'Salesforce', email:'dvinayaka@salesforce.com', phone:''},
+  {name:'Aditya Chandran', company:'Salesforce', email:'achandran@salesforce.com', phone:''},
+  {name:'Reuben Retnaraj', company:'Databricks', email:'reuben.retnaraj@databricks.com', phone:''},
+  {name:'Ritika Jhunjhunwala', company:'Databricks', email:'ritika.jhunjhunwala@databricks.com', phone:''},
+  {name:'Stuti Patil', company:'The D. E. Shaw group', email:'stuti.patil@deshaw.com', phone:''},
+  {name:'Liah Mathew', company:'The D. E Shaw group', email:'liah.mathew@deshaw.com', phone:''},
+  {name:'Azaan Hashim', company:'The D. E Shaw group', email:'azaan.hashim@deshaw.com', phone:''},
+  {name:'Ayushi Tiwari', company:'Publicis Sapient', email:'ayushi.tiwari@publicissapient.com', phone:''},
+];
 
 // ── HR PROSPECT TEMPLATE ───────────────────────────────────────────────────────
 const HR_PROSPECT_TPL={
@@ -2268,6 +2351,84 @@ function renderHRProspectTemplate(){
   display.textContent=HR_PROSPECT_TPL.body('[Name]','[Company]');
 }
 
+// ── HR BATCH 2 FUNCTIONS ──────────────────────────────────────────────────────
+function getHRBatch2Status(i){return localStorage.getItem('hrb2_status_'+i)||'Not Sent';}
+function setHRBatch2Status(i,s){localStorage.setItem('hrb2_status_'+i,s);SyncManager.markDirty();}
+
+function cycleHRBatch2Status(i){
+  const cur=getHRBatch2Status(i);
+  const next=STATUS_CYCLE[(STATUS_CYCLE.indexOf(cur)+1)%STATUS_CYCLE.length];
+  setHRBatch2Status(i,next);
+  const btn=document.getElementById('hrb2-sts-'+i);
+  if(btn){btn.textContent=next;btn.setAttribute('style','cursor:pointer;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;border:none;'+STATUS_STYLE[next]);}
+  updateHRBatch2Stats();
+}
+
+function updateHRBatch2Stats(){
+  const all=HR_BATCH2.map((_,i)=>getHRBatch2Status(i));
+  document.getElementById('hrb2-total').textContent=HR_BATCH2.length;
+  document.getElementById('hrb2-sent').textContent=all.filter(s=>s!=='Not Sent').length;
+  document.getElementById('hrb2-replied').textContent=all.filter(s=>s==='Replied'||s==='Interview').length;
+  document.getElementById('hrb2-interview').textContent=all.filter(s=>s==='Interview').length;
+  const sent=all.filter(s=>s!=='Not Sent').length;
+  const replied=all.filter(s=>s==='Replied'||s==='Interview').length;
+  document.getElementById('hrb2-rate').textContent=sent>0?Math.round(replied/sent*100)+'%':'0%';
+}
+
+function filterHRBatch2(){
+  const searchVal=(document.getElementById('hrb2-search').value||'').toLowerCase();
+  const tbody=document.getElementById('hrb2-tbody');
+  if(!tbody) return;
+  let rows='';
+  HR_BATCH2.forEach((hr,i)=>{
+    const status=getHRBatch2Status(i);
+    const ss=STATUS_STYLE[status];
+    const matchSearch=!searchVal||(hr.name.toLowerCase().includes(searchVal)||hr.email.toLowerCase().includes(searchVal)||hr.company.toLowerCase().includes(searchVal));
+    if(matchSearch){
+      rows+=`<tr style="font-size:11px"><td style="color:#64748b">${i+1}</td><td><strong>${hr.name}</strong></td><td>${hr.company}</td><td><a href="mailto:${hr.email}" style="color:#22d3ee;text-decoration:none">${hr.email}</a></td><td><button id="hrb2-sts-${i}" onclick="cycleHRBatch2Status(${i})" style="cursor:pointer;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:600;border:none;${ss}">${status}</button></td><td style="padding:4px 8px"><button onclick="copyHRBatch2Email(${i})" style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:3px 8px;color:#94a3b8;font-size:10px;cursor:pointer;font-family:Inter,sans-serif;margin-right:3px">Copy</button><button onclick="openHRBatch2Mailto(${i})" style="background:#1a2235;border:1px solid rgba(148,163,184,.15);border-radius:5px;padding:3px 8px;color:#34d399;font-size:10px;cursor:pointer;font-family:Inter,sans-serif">Send ↗</button></td></tr>`;
+    }
+  });
+  tbody.innerHTML=rows||'<tr><td colspan="6" style="text-align:center;padding:20px;color:#64748b">No matching contacts</td></tr>';
+}
+
+function copyHRBatch2Email(i){
+  const hr=HR_BATCH2[i];
+  const body=HR_PROSPECT_TPL.body(hr.name,hr.company);
+  navigator.clipboard.writeText(body).catch(()=>{const ta=document.createElement('textarea');ta.value=body;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
+  alert('Email template copied to clipboard!');
+}
+
+function openHRBatch2Mailto(i){
+  const hr=HR_BATCH2[i];
+  const body=HR_PROSPECT_TPL.body(hr.name,hr.company);
+  const subj=encodeURIComponent(HR_PROSPECT_TPL.subject);
+  const bodyEnc=encodeURIComponent(body);
+  window.open('mailto:'+hr.email+'?subject='+subj+'&body='+bodyEnc);
+  setHRBatch2Status(i,'Sent');
+  const btn=document.getElementById('hrb2-sts-'+i);
+  if(btn) btn.textContent='Sent';
+  updateHRBatch2Stats();
+}
+
+function copyHRBatch2Template(){
+  const template=HR_PROSPECT_TPL.body('[Name]','[Company]');
+  navigator.clipboard.writeText(template).catch(()=>{const ta=document.createElement('textarea');ta.value=template;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
+  alert('Template copied to clipboard!');
+}
+
+function renderHRBatch2Table(){
+  const tbody=document.getElementById('hrb2-tbody');
+  if(!tbody) return;
+  filterHRBatch2();
+  updateHRBatch2Stats();
+}
+
+function renderHRBatch2Template(){
+  const display=document.getElementById('hrb2-template-preview');
+  if(!display) return;
+  display.textContent=HR_PROSPECT_TPL.body('[Name]','[Company]');
+}
+
 function sw(name,btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
@@ -2332,7 +2493,7 @@ const SyncManager = {
 
   // ── State collection ───────────────────────────────────────────────────
   getState(){
-    const hr1={},hr2={},agency={},hrp={},actions={};
+    const hr1={},hr2={},agency={},hrp={},hrb2={},actions={};
     for(let k,i=0;i<localStorage.length;i++){
       k=localStorage.key(i);
       if(k?.startsWith('hr_status_')){
@@ -2347,16 +2508,19 @@ const SyncManager = {
       } else if(k?.startsWith('hrp_status_')){
         const v=localStorage.getItem(k);
         if(v&&v!=='Not Sent') hrp[k.slice(11)]=v;
+      } else if(k?.startsWith('hrb2_status_')){
+        const v=localStorage.getItem(k);
+        if(v&&v!=='Not Sent') hrb2[k.slice(12)]=v;
       } else if(k?.startsWith('ai_')){
         const v=localStorage.getItem(k);
         if(v==='1') actions[k.slice(3)]=1;
       }
     }
-    return {hr1,hr2,agency,hrp,actions};
+    return {hr1,hr2,agency,hrp,hrb2,actions};
   },
 
   applyState(state){
-    const {hr1={},hr2={},agency={},hrp={},actions={}}=state;
+    const {hr1={},hr2={},agency={},hrp={},hrb2={},actions={}}=state;
     // HR1 statuses — update localStorage then re-render table
     let hr1Changed=false;
     Object.entries(hr1).forEach(([i,v])=>{
@@ -2392,6 +2556,15 @@ const SyncManager = {
       }
     });
     if(hrpChanged && typeof renderHRProspectsTable==='function') renderHRProspectsTable();
+
+    // HR Batch 2 statuses — update localStorage then re-render table
+    let hrb2Changed=false;
+    Object.entries(hrb2).forEach(([i,v])=>{
+      if(localStorage.getItem('hrb2_status_'+i)!==v){
+        localStorage.setItem('hrb2_status_'+i,v); hrb2Changed=true;
+      }
+    });
+    if(hrb2Changed && typeof renderHRBatch2Table==='function') renderHRBatch2Table();
 
     // Action items — update DOM directly
     document.querySelectorAll('.ai-item').forEach((el,i)=>{
@@ -2475,6 +2648,8 @@ window.addEventListener('load',()=>{
   renderAgencyTemplate();
   renderHRProspectsTable();
   renderHRProspectTemplate();
+  renderHRBatch2Table();
+  renderHRBatch2Template();
   new Chart(document.getElementById('atsChart'),{
     type:'doughnut',
     data:{datasets:[{data:[89,11],backgroundColor:['#34d399','#1a2235'],borderWidth:0}]},
