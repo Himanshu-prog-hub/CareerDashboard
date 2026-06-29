@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const r = await fetch(
-        `${SUPABASE_URL}/rest/v1/dashboard_state?id=eq.main&select=data,updated_at`,
+        `${SUPABASE_URL}/rest/v1/dashboard_state?id=eq.career-dashboard&select=data,updated_at`,
         { headers: supaHeaders }
       );
       if (!r.ok) throw new Error(`Supabase GET ${r.status}`);
@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
       const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
       const payload = JSON.stringify({
-        id: 'main',
+        id: 'career-dashboard',
         data: body,
         updated_at: new Date().toISOString()
       });
